@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+     - 27017:27017
+  server:
+    container_name: brewery-locator-server
+    restart: always
+    environment: 
+      MONGO_HOST: mongo
+    build: .
+    ports:
+     - 8080:8080
+    links:
+     - mongo

@@ -1,0 +1,10 @@
+.select{
+    width: 75%;
+}
+
+.button{
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 75% !important;
+}
