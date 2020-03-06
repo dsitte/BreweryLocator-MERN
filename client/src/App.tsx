@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Header } from './components/header/header';
-import { BreweryList } from './components/breweryList/breweryList';
-import { CitySelector } from './components/citySelector/citySelector';
 import { BreweryLocator } from './components/breweryLocator/breweryLocator';
 import { Container } from '@material-ui/core';
 

@@ -1,13 +1,9 @@
 import React from 'react'
-import { BreweryService } from '../../services/breweryService'
 import { Brewery } from '../../models/brewery'
-import { List, ListItem, ListItemAvatar, Avatar, ListItemText, ListItemIcon, Typography, ListItemSecondaryAction } from '@material-ui/core'
+import { List, ListItem, ListItemText, ListItemIcon, Typography, ListItemSecondaryAction } from '@material-ui/core'
 import styles from './breweryList.module.css'
 
 export class BreweryList extends React.Component<BreweryListProps, {}> {
-    constructor(props: Readonly<any>) {
-        super(props)
-    }
 
     render() { 
         return (

@@ -1,14 +1,9 @@
 import React from 'react'
-import { BreweryService } from '../../services/breweryService'
 import { Select, MenuItem, InputLabel, FormControl, Grid } from '@material-ui/core'
 
 import styles from './citySelector.module.css'
 
 export class CitySelector extends React.Component<CitySelectorProps, {}> {
-
-    constructor(props: Readonly<CitySelectorProps>) {
-        super(props)
-    }
 
     render() {
         return (
