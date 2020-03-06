@@ -59,6 +59,7 @@ export class BreweryLocator extends React.Component<any, BreweryLocatorState> {
             breweries: []
         })
         let breweries = await BreweryService.getBreweriesForCity(this.state.selectedState!, city)
+        breweries.sort((a,b) => a.name?.localeCompare(b.name!) ?? -1)
         this.setState({
             selectedCity: city,
             breweries,
@@ -73,6 +74,7 @@ export class BreweryLocator extends React.Component<any, BreweryLocatorState> {
         })
         let cities = await BreweryService.getCities(state)
         let breweries = await BreweryService.getBreweriesForState(state);
+        breweries.sort((a: Brewery,b: Brewery) => a.name?.localeCompare(b.name!) ?? -1)
         this.setState({
             cities,
             selectedState: state,
@@ -113,6 +115,7 @@ export class BreweryLocator extends React.Component<any, BreweryLocatorState> {
         })
 
         let breweries = await BreweryService.getBreweriesForSearch(searchTerm);
+        breweries.sort((a,b) => a.name?.localeCompare(b.name!) ?? -1)
         this.setState({
             breweries,
             loading: false
