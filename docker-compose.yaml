@@ -19,3 +19,11 @@ services:
      - 8080:8080
     links:
      - mongo
+  seed:
+    container_name: brewery-locator-seed
+    restart: on-failure
+    environment: 
+      MONGO_HOST: mongo
+    build: ./seed
+    links:
+     - mongo

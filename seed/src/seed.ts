@@ -1,12 +1,11 @@
 //Seed db with data
 import { MongoClient } from 'mongodb';
-import { BreweryStore } from './services/BreweryStore';
 
 import * as Axios from 'axios'
 import { OpenBreweryService } from './services/OpenBreweryService';
 import { env } from 'process';
 
-export const SeedDB = async () => {
+(async () => {
     console.log("Beginning DB seed");
 
     let axiosInstance = Axios.default.create({
@@ -30,6 +29,8 @@ export const SeedDB = async () => {
         await new Promise((resolve) => setTimeout(resolve, 5000));
     }
 
+    console.log("Connected to mongodb. Beginning seed.")
+
     let databases = await mongo.db("admin").admin().listDatabases();
     if(databases.databases.some((d: any) => d.name === "brewery")){
         let brewCount = await mongo.db("brewery").collection("brewery").count()
@@ -40,11 +41,10 @@ export const SeedDB = async () => {
     }
 
     let openBrewServ = new OpenBreweryService(axiosInstance);
-    let brewStore = new BreweryStore(mongo.db("brewery"));
 
     let breweries = await openBrewServ.getAllBreweries();
-    await brewStore.batchInsertBrewery(breweries);
+    await mongo.db("brewery").collection("brewery").insertMany(breweries)
 
     console.log("Seed complete.");
-}
+})()
 

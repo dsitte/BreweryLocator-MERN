@@ -20,6 +20,39 @@
             "preLaunchTask": "tsc: build - server/tsconfig.json",
             "outFiles": ["${workspaceFolder}/server/build/**/*.js"],
             "cwd": "${workspaceFolder}/server"
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest All",
+            "program": "${workspaceFolder}/client/node_modules/.bin/jest",
+            "args": ["--runInBand"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "windows": {
+              "program": "${workspaceFolder}/client/node_modules/jest/bin/jest",
+            },
+            "cwd": "${workspaceFolder}/client"
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest Current File",
+            "program": "${workspaceFolder}/client/node_modules/.bin/jest",
+            "args": [
+              "${fileBasenameNoExtension}",
+              "--config",
+              "jest.config.js"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "windows": {
+              "program": "${workspaceFolder}/client/node_modules/jest/bin/jest",
+            },
+            "cwd": "${workspaceFolder}/client"
+          }
+        
     ]
 }

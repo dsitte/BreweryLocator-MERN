@@ -16,7 +16,6 @@
     "@types/haversine": "^1.1.4",
     "@types/mongodb": "^3.5.0",
     "@types/node": "^13.7.7",
-    "@types/redis": "^2.8.16",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"

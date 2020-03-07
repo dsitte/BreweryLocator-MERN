@@ -1,0 +1,19 @@
+{
+  "name": "mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/seed.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/mongodb": "^3.5.2",
+    "@types/node": "^13.9.0",
+    "axios": "^0.19.2",
+    "mongodb": "^3.5.4",
+    "typescript": "^3.8.3"
+  }
+}
