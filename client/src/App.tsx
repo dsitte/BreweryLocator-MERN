@@ -8,8 +8,10 @@ import { BreweryService } from './services/breweryService'
 
 function App() {
 
+  //Moving handling of error response to BreweryService
   let axiosInstance = axios.create({
-    baseURL: "/api"
+    baseURL: "/api",
+    validateStatus: () => true
   });
   let breweryService = new BreweryService(axiosInstance);
 

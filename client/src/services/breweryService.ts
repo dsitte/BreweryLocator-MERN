@@ -1,6 +1,7 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { Brewery } from '../models/brewery'
 import { isNumber } from 'util';
+import { Exception } from 'typemoq/_all';
 
 export class BreweryService {
 
@@ -8,31 +9,37 @@ export class BreweryService {
     
     async getStates(): Promise<string[]> {
         let resp = await this.axios.get("/locations/states")
-        return resp.data;
+        this.checkStatus(resp.status)
+        return resp.data;        
     }
 
     async getCities(state: string): Promise<string[]>{
         let resp = await this.axios.get(`/locations/${state}/cities`)
+        this.checkStatus(resp.status)
         return resp.data;
     }
 
     async getBreweriesForState(state: string){
         let resp = await this.axios.get(`/breweries/${state}`);
+        this.checkStatus(resp.status)
         return this.mapResponseToObject(resp);
     }
 
     async getBreweriesForCity(state: string, city: string): Promise<Brewery[]> {
         let resp = await this.axios.get(`/breweries/${state}/${city}`)
+        this.checkStatus(resp.status)
         return this.mapResponseToObject(resp);
     }
 
     async getBreweriesForLocation(lat: number, long: number, dist: number): Promise<Brewery[]>{
         let resp = await this.axios.get(`/breweries/nearme?lat=${lat}&long=${long}&dist=${dist}`)
+        this.checkStatus(resp.status)
         return this.mapResponseToObject(resp);
     }
 
     async getBreweriesForSearch(searchTerm: string): Promise<Brewery[]> {
         let resp = await this.axios.get(`/breweries/search?term=${searchTerm}`)
+        this.checkStatus(resp.status)
         return this.mapResponseToObject(resp);
     }
 
@@ -57,9 +64,14 @@ export class BreweryService {
                 if(!isNaN(+d.latitude)){
                     brewery.latitude = +d.latitude
                 }
+                if(!isNaN(+d.distance)){
+                    brewery.distance = +d.distance
+                }
                 return brewery
             })
         }
         return []
     }
+
+    private checkStatus = (status: number) => { if(status < 200 || status >= 400) throw "An unknown error occurred." }
 }

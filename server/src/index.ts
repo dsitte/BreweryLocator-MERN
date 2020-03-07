@@ -14,8 +14,12 @@ app.use(express.static(path.join(__dirname, '../../client/build')))
 app.use('/api/breweries', BreweryRoutes)
 app.use('/api/locations', LocationRoutes)
 
-SeedDB().then(() => {
-    app.listen(8080, () => {
-        console.log("Server started on port 8080");
-    });
-})
+// SeedDB().then(() => {
+//     app.listen(8080, () => {
+//         console.log("Server started on port 8080");
+//     });
+// })
+
+app.listen(8080, () => {
+    console.log("Server started on port 8080");
+});
